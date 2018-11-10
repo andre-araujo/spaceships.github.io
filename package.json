@@ -1,0 +1,24 @@
+{
+  "name": "spaceships",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel ./index.html",
+    "build:prod": "parcel build ./index.html --public-url /"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andre-araujo/spaceships.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andre-araujo/spaceships.io/issues"
+  },
+  "homepage": "https://andre-araujo.github.io/spaceships.io",
+  "devDependencies": {
+    "parcel": "^1.10.3",
+    "typescript": "^3.1.6"
+  }
+}

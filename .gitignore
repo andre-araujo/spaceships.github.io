@@ -1,0 +1,11 @@
+*.swp
+*~
+.cache
+*.iml
+.*.haste_cache.*
+.DS_Store
+.idea
+npm-debug.log
+node_modules
+coverage
+*compile*
