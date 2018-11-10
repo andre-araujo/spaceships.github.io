@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.ts"],"names":[],"mappings":";AAAA,OAAO,OAAS,WACd,QAAQ,IAAI","file":"src.d8fd9f76.map","sourceRoot":"../src","sourcesContent":["window.onload = () => {\n  console.log('started')\n};\n"]}
