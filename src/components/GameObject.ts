@@ -18,8 +18,8 @@ export default class GameObject {
 
     const radian = this.settings.rotation * Math.PI/180;
 
-    this.settings.x = this.settings.x + Math.sin(radian);
-    this.settings.y = this.settings.y - Math.cos(radian);
+    this.settings.x = this.settings.x + Math.sin(radian) * 2;
+    this.settings.y = this.settings.y - Math.cos(radian) * 2;
   }
 
   setSprite(src: string) {
@@ -45,12 +45,47 @@ export default class GameObject {
     this.ctx.translate(x + width / 2, y + height / 2);
     this.ctx.rotate(radian);
     this.ctx.translate(-x - width / 2, -y - height / 2);
-
     this.ctx.drawImage(this.sprite, x, y, width, height);
 
-    this.ctx.closePath();
-    this.ctx.stroke();
-
     this.ctx.restore();
+  }
+
+  checkColision(gameObject: GameObject) {
+    const selfBounding = this.getBoundingRect(this.settings);
+    const otherBounding = this.getBoundingRect(gameObject.settings);
+
+    this.showBoundaries(this);
+    this.showBoundaries(gameObject);
+
+    if(
+      ((selfBounding.top >= otherBounding.top && selfBounding.top <= otherBounding.bottom) &&
+      (selfBounding.right <= otherBounding.right && selfBounding.right >= otherBounding.left)) ||
+      ((selfBounding.left >= otherBounding.left && selfBounding.left <= otherBounding.right) &&
+      (selfBounding.bottom <= otherBounding.bottom && selfBounding.bottom >= otherBounding.top))
+    ) {
+
+      console.log('colidiu')
+    }
+  }
+
+  /**
+   * Debug only
+   */
+  showBoundaries(gameObject: GameObject) {
+    const target = gameObject || this;
+
+    this.ctx.save();
+    this.ctx.strokeStyle  = 'red';
+    this.ctx.strokeRect(target.settings.x, target.settings.y, target.settings.width, target.settings.height);
+    this.ctx.restore();
+  }
+
+  getBoundingRect({x, y, width, height}) {
+    return {
+      top: y,
+      right: x + width,
+      bottom: y + height,
+      left: x
+    }
   }
 }

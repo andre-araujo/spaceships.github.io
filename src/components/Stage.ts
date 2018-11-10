@@ -43,6 +43,7 @@ export default class Stage {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     this.player.render();
     this.enemy.render();
+    this.player.checkColision(this.enemy);
 
     window.requestAnimationFrame(() => this.render());
   }
