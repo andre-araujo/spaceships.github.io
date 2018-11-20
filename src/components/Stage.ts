@@ -1,5 +1,7 @@
 import SpaceShip from './SpaceShip';
 
+const socket = require('socket.io-client')('http://localhost:3000');
+
 export default class Stage {
   player: SpaceShip;
   enemy: SpaceShip;
@@ -21,16 +23,8 @@ export default class Stage {
       isPlayer: true,
       rotation: 1,
       height: 30,
-      width: 30
-    });
-
-    this.enemy = new SpaceShip(this.canvas, {
-      x: 200,
-      y: 200,
-      isPlayer: false,
-      rotation: 60,
-      height: 60,
-      width: 60
+      width: 30,
+      id: Math.random(),
     });
   }
 
@@ -40,11 +34,19 @@ export default class Stage {
   }
 
   render() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-    this.player.render();
-    this.enemy.render();
-    this.player.checkColision(this.enemy);
+    socket.on('update', (enemies) => {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-    window.requestAnimationFrame(() => this.render());
+      enemies.forEach(enemyData => {
+        if(enemyData.id !== this.player.settings.id) {
+          const enemy = new SpaceShip(this.canvas, enemyData);
+          this.player.checkColision(enemy);
+          enemy.render();
+        }
+      });
+
+      this.player.render();
+      socket.emit('player', {...this.player.settings, isPlayer: false});
+    });
   }
 }

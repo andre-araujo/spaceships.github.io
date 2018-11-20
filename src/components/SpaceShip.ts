@@ -18,7 +18,7 @@ export default class SpaceShip extends GameObject {
     public settings: IfcSpaceShipSettings
   ) {
     super(canvas, settings);
-    this.setSprite('http://chittagongit.com//images/spaceship-icon-png/spaceship-icon-png-6.jpg');
+    this.setSprite('https://art.pixilart.com/df632599c62ec0a.gif');
   }
 
   playerMovements() {
@@ -31,10 +31,6 @@ export default class SpaceShip extends GameObject {
       (Math.abs(x - cursor.clientX) > threshold || Math.abs(y - cursor.clientY) > threshold)
     ) {
       this.moveTo(cursor.clientX, cursor.clientY);
-    }
-
-    if(!isPlayer) {
-      this.patrol();
     }
   }
 

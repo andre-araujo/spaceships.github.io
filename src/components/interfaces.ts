@@ -5,4 +5,5 @@ export interface IfcSpaceShipSettings {
   height: number,
   rotation: number;
   isPlayer: boolean;
+  id: number;
 }
