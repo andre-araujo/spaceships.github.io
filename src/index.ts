@@ -5,5 +5,4 @@ window.onload = () => {
   const stage : Stage = new Stage(canvas);
 
   stage.render();
-  console.log('dwwcscssass')
 };

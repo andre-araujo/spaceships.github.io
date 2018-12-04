@@ -64,7 +64,7 @@ export default class GameObject {
       (selfBounding.bottom <= otherBounding.bottom && selfBounding.bottom >= otherBounding.top))
     ) {
 
-      console.log('colidiu')
+      console.log('ok')
     }
   }
 
